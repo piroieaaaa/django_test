@@ -2,9 +2,7 @@ from django.db import models
 
 from users.models import User
 
-
-class Item(models.Model):
-    """
+"""
     データ定義クラス
       各フィールドを定義する
     参考：
@@ -12,7 +10,7 @@ class Item(models.Model):
     https://docs.djangoproject.com/ja/2.1/ref/models/fields/
     """
 
-    # サンプル項目1 文字列
+"""     # サンプル項目1 文字列
     sample_1 = models.CharField(
         verbose_name='サンプル項目1 文字列',
         max_length=20,
@@ -91,6 +89,68 @@ class Item(models.Model):
         null=True,
         related_name='sample_10',
         on_delete=models.SET_NULL,
+    ) """
+
+class Item(models.Model):
+
+    # 優先度
+    priority_choice = (
+        (1, '買う'),
+        (2, '保留'),
+    )
+
+    priority = models.IntegerField(
+        verbose_name='優先度',
+        choices=priority_choice,
+        default=priority_choice[0][0],
+        blank=False,
+        null=False,
+    )
+
+    # カテゴリ
+    category_choice = (
+        (1, '家具家電'),
+        (2, '調理器具'),
+        (3, '消耗品'),
+        (4, '食器'),
+        (99, 'その他'),
+    )
+
+    category = models.IntegerField(
+        verbose_name='カテゴリ',
+        choices=category_choice,
+        default=category_choice[0][0],
+        blank=False,
+        null=False,
+    )
+
+    # 名称
+    name = models.CharField(
+        verbose_name='名称',
+        max_length=30,
+        blank=True,
+        null=True,
+    )
+
+    # 予定金額
+    plan_money = models.IntegerField(
+        verbose_name='予定額',
+        blank=True,
+        null=True,
+    )
+
+    # 購入金額
+    buy_money = models.IntegerField(
+        verbose_name='購入額',
+        blank=True,
+        null=True,
+    )
+
+    # メモ
+    memo = models.TextField(
+        verbose_name='メモ',
+        blank=True,
+        null=True,
     )
 
     # 以下、管理項目
@@ -137,7 +197,7 @@ class Item(models.Model):
         """
         リストボックスや管理画面での表示
         """
-        return self.sample_1
+        return self.name
 
     class Meta:
         """
