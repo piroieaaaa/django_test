@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <title>マイコンボード　プロパティ</title>
+        <meta charset=”UTF-8”/>
+        <style>
+            * {
+                margin: 0px;
+                padding: 0px;
+            }
+            body{
+                background-color: #1D1D1D
+            }
+            h1{
+                padding:20px;
+                color: #F8F8F8;
+                background-color: #323232;
+            }
+            .tab_item {
+                width: calc(100%/2);
+                text-align: center;
+                color: #909090;
+                display: block;
+                float: left;
+                text-align: center;
+                transition: all 0.2s ease;
+                background-color: #323232;
+                padding:10px 0px 10px 0px;
+            }
+            
+            .tab_item:hover {
+                color: #F8F8F8;
+            }
+            input[name="tab_item"] {
+                display: none;
+            }
+            .tab_content {
+                display: none;
+                padding: 40px 40px 0;
+                clear: both;
+                overflow: hidden;
+            }
+            #sensor:checked ~ #sensor_content,
+            #connection:checked ~ #connection_content {
+                display: block;
+            }
+            .tabs input:checked + .tab_item {
+                color: #F8F8F8;
+                border-bottom: 3px solid #F8F8F8;
+            }
+            .c-txtsp{
+                color: #F8F8F8;
+            }
+        </style>
+    </header>
+    <body>
+        <h1>マイコンボード　プロパティ</h1>
+        <div class="tabs">
+            <input id="sensor" type="radio" name="tab_item" checked>
+            <label class="tab_item" for="sensor">センサー</label>
+            <input id="connection" type="radio" name="tab_item">
+            <label class="tab_item" for="connection">接続情報</label>
+            <div class="tab_content" id="sensor_content">
+                <div class="tab_content_description">
+                    <p class="c-txtsp">センサーの内容がここに入ります</p>
+                </div>
+            </div>
+            <div class="tab_content" id="connection_content">
+                <div class="tab_content_description">
+                    <p class="c-txtsp">接続情報がここに入ります</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
